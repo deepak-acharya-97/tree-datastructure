@@ -1,5 +1,6 @@
 package treetraversals;
 
+import java.util.*;
 import tree.Node;
 import utility.Utilities.Utility;
 
@@ -29,6 +30,22 @@ public class TreeTraversals {
 			postOrderTraversal(root.getLeft());
 			postOrderTraversal(root.getRight());
 			Utility.Print(root.getData()+" --> ");
+		}
+		
+		public static void iterativeInOrderTraversal(Node root) {
+			if(Utility.isNull(root)) return;
+			Stack<Node> stack = new Stack<>();
+			Node curr=root;
+			
+			while(Utility.isNotNull(curr) || stack.size()>0) {
+				while(Utility.isNotNull(curr)) {
+					stack.push(curr);
+					curr=curr.getLeft();
+				}
+				curr=stack.pop();
+				Utility.Print(curr.getData()+"--> ");
+				curr=curr.getRight();
+			}
 		}
 	}
 
